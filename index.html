@@ -1,1110 +1,1193 @@
-```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>Diamond Entertainment Cruise</title>
+<title>Dragon Tiger - Skill Arena</title>
 
 <style>
-*{
-  margin:0;
-  padding:0;
-  box-sizing:border-box
+* {
+    box-sizing: border-box;
 }
 
-html{
-  scroll-behavior:smooth
+:root {
+    --bg: #070b16;
+    --panel: #11182a;
+    --panel2: #18223a;
+    --border: #303c5d;
+    --gold: #f5c65a;
+    --gold2: #a96f16;
+    --red: #e34854;
+    --blue: #4e8cff;
+    --muted: #9ba8c4;
+    --green: #45d18b;
 }
 
-body{
-  font-family:Arial,sans-serif;
-  background:#070707;
-  color:#fff
+body {
+    margin: 0;
+    min-height: 100vh;
+    font-family: Arial, Helvetica, sans-serif;
+    color: #fff;
+    background:
+        radial-gradient(circle at 50% -10%, #344a7b 0, #141d35 30%, #070b16 70%);
 }
 
-a{
-  text-decoration:none;
-  color:inherit
+button,
+input {
+    font: inherit;
 }
 
-:root{
-  --gold:#d7b45a;
-  --lightgold:#f4da91;
-  --dark:#0d0f0f;
-  --gray:#aaa;
+button {
+    cursor: pointer;
 }
 
-/* TOP BAR */
-
-.topbar{
-  background:#030303;
-  padding:9px 6%;
-  display:flex;
-  justify-content:space-between;
-  color:#999;
-  font-size:13px;
-  border-bottom:1px solid #292929
+.app {
+    width: min(1100px, 94%);
+    margin: auto;
+    padding: 24px 0 40px;
 }
 
 /* HEADER */
 
-header{
-  position:sticky;
-  top:0;
-  z-index:99;
-  background:rgba(5,5,5,.96);
-  border-bottom:1px solid #292929
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+    margin-bottom: 20px;
 }
 
-.navbar{
-  max-width:1200px;
-  margin:auto;
-  padding:18px 25px;
-  display:flex;
-  justify-content:space-between;
-  align-items:center
+.logo h1 {
+    margin: 0;
+    font-size: 32px;
 }
 
-.logo{
-  font-size:27px;
-  font-weight:900;
-  letter-spacing:5px;
-  color:#fff
+.logo p {
+    margin: 6px 0 0;
+    color: var(--muted);
 }
 
-.logo span{
-  color:var(--gold)
+.balance {
+    padding: 13px 20px;
+    border-radius: 14px;
+    background: rgba(17, 24, 42, .9);
+    border: 1px solid var(--border);
 }
 
-nav{
-  display:flex;
-  gap:28px
+.balance small {
+    color: var(--muted);
+    display: block;
 }
 
-nav a{
-  font-size:13px;
-  font-weight:bold;
-  text-transform:uppercase
+.balance strong {
+    display: block;
+    color: var(--gold);
+    font-size: 22px;
+    margin-top: 3px;
 }
 
-nav a:hover{
-  color:var(--gold)
-}
-
-.menu{
-  display:none;
-  background:none;
-  color:#fff;
-  border:1px solid #555;
-  padding:8px 12px;
-  cursor:pointer
-}
-
-/* ENTERTAINMENT NOTICE */
-
-.entertainment-notice{
-  background:#151208;
-  border-bottom:1px solid #5d4b1d;
-  color:#f4da91;
-  text-align:center;
-  padding:11px 20px;
-  font-size:13px;
-  font-weight:bold;
-  letter-spacing:.5px
-}
-
-/* HERO */
+/* MAIN */
 
-.hero{
-  min-height:82vh;
-  display:flex;
-  justify-content:center;
-  align-items:center;
-  text-align:center;
-  padding:80px 20px;
-
-  background:
-  linear-gradient(rgba(0,0,0,.35),rgba(0,0,0,.88)),
-  url("https://images.unsplash.com/photo-1540946485063-a40da27545f8?auto=format&fit=crop&w=2000&q=85")
-  center/cover no-repeat
+.game {
+    background: rgba(12, 17, 31, .96);
+    border: 1px solid #303b5a;
+    border-radius: 26px;
+    padding: 22px;
+    box-shadow: 0 25px 80px rgba(0,0,0,.4);
 }
 
-.hero-content{
-  max-width:850px
-}
+/* STATS */
 
-.eyebrow{
-  color:var(--lightgold);
-  letter-spacing:5px;
-  font-size:13px;
-  font-weight:bold
+.stats {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px;
+    margin-bottom: 20px;
 }
 
-.hero h1{
-  font-size:clamp(48px,8vw,90px);
-  line-height:.95;
-  text-transform:uppercase;
-  margin:20px 0;
-  text-shadow:0 5px 30px #000
+.stat {
+    padding: 14px;
+    border-radius: 14px;
+    background: var(--panel);
+    border: 1px solid var(--border);
+    text-align: center;
 }
 
-.hero p{
-  max-width:700px;
-  margin:auto;
-  color:#ddd;
-  font-size:18px;
-  line-height:1.7
+.stat span {
+    color: var(--muted);
+    font-size: 12px;
+    display: block;
 }
 
-.btn{
-  display:inline-block;
-  margin:25px 5px 0;
-  padding:15px 30px;
-  background:var(--gold);
-  color:#080808;
-  font-weight:900;
-  text-transform:uppercase;
-  letter-spacing:1px;
-  transition:.3s
+.stat strong {
+    display: block;
+    margin-top: 5px;
+    font-size: 20px;
 }
 
-.btn:hover{
-  background:#fff
-}
+/* TABLE */
 
-.btn-outline{
-  background:transparent;
-  color:#fff;
-  border:1px solid var(--gold)
+.table {
+    border-radius: 22px;
+    padding: 24px;
+    background:
+        radial-gradient(circle at center, #1d2944, #0c1323 70%);
+    border: 1px solid #33405f;
 }
 
-.btn-outline:hover{
-  background:var(--gold);
-  color:#080808
+.cards-area {
+    display: grid;
+    grid-template-columns: 1fr 110px 1fr;
+    gap: 18px;
+    align-items: center;
 }
 
-/* GENERAL */
-
-section{
-  padding:90px 6%
+.player {
+    min-height: 310px;
+    border-radius: 20px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
 }
 
-.container{
-  max-width:1200px;
-  margin:auto
+.player h2 {
+    margin: 0 0 18px;
+    font-size: 25px;
 }
 
-.dark{
-  background:#0d1010
+.dragon-side {
+    background: linear-gradient(145deg, #35161d, #120e18);
+    border: 1px solid #8c303d;
 }
 
-.title{
-  max-width:750px;
-  margin:0 auto 50px;
-  text-align:center
+.tiger-side {
+    background: linear-gradient(145deg, #392b10, #151108);
+    border: 1px solid #b98a30;
 }
 
-.title small{
-  color:var(--gold);
-  letter-spacing:4px;
-  font-weight:bold
-}
+/* CARD */
 
-.title h2{
-  font-size:43px;
-  margin:10px 0;
-  text-transform:uppercase
+.card {
+    width: 145px;
+    height: 200px;
+    background: #fff;
+    border-radius: 15px;
+    color: #171717;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-size: 58px;
+    font-weight: bold;
+    box-shadow: 0 15px 30px rgba(0,0,0,.45);
+    transition: transform .5s;
 }
 
-.title p{
-  color:var(--gray);
-  line-height:1.6
+.card.red {
+    color: #d52335;
 }
 
-/* ENTERTAINMENT CARDS */
-
-.cards{
-  display:grid;
-  grid-template-columns:repeat(3,1fr);
-  gap:22px
+.card.black {
+    color: #151515;
 }
 
-.card{
-  background:#111414;
-  padding:35px;
-  border:1px solid #292d2d;
-  transition:.3s
+.card .suit {
+    font-size: 45px;
+    margin-top: 4px;
 }
 
-.card:hover{
-  transform:translateY(-7px);
-  border-color:var(--gold)
+.card.flipping {
+    animation: flip .65s ease;
 }
 
-.icon{
-  font-size:40px;
-  margin-bottom:15px
+@keyframes flip {
+    0% {
+        transform: rotateY(0deg);
+    }
+    50% {
+        transform: rotateY(90deg) scale(.9);
+    }
+    100% {
+        transform: rotateY(0deg);
+    }
 }
 
-.card h3{
-  color:var(--lightgold);
-  font-size:23px;
-  margin-bottom:10px
-}
+/* CENTER */
 
-.card p{
-  color:#aaa;
-  line-height:1.7
+.center {
+    text-align: center;
 }
 
-/* EXPERIENCE */
-
-.split{
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:55px;
-  align-items:center
+.vs {
+    width: 76px;
+    height: 76px;
+    margin: auto;
+    display: grid;
+    place-items: center;
+    border-radius: 50%;
+    background: linear-gradient(145deg, #ffd96e, #a76b13);
+    color: #181207;
+    font-weight: 900;
+    box-shadow: 0 0 35px rgba(245,198,90,.3);
 }
 
-.boat-image{
-  min-height:450px;
-  border:1px solid #333;
-
-  background:
-  linear-gradient(rgba(0,0,0,.1),rgba(0,0,0,.3)),
-  url("https://images.unsplash.com/photo-1569263979104-865ab7cd8d13?auto=format&fit=crop&w=1400&q=85")
-  center/cover
+.result {
+    margin-top: 15px;
+    min-height: 42px;
+    color: var(--gold);
+    font-weight: bold;
+    font-size: 15px;
 }
 
-.content small{
-  color:var(--gold);
-  letter-spacing:4px;
-  font-weight:bold
-}
+/* CONTROLS */
 
-.content h2{
-  font-size:45px;
-  line-height:1.05;
-  margin:12px 0 20px;
-  text-transform:uppercase
+.controls {
+    margin-top: 20px;
+    background: var(--panel);
+    border: 1px solid var(--border);
+    border-radius: 18px;
+    padding: 20px;
 }
 
-.content p{
-  color:#aaa;
-  margin-bottom:15px;
-  line-height:1.7
+.controls h3 {
+    margin: 0 0 14px;
 }
 
-/* GAMES */
-
-.games{
-  display:grid;
-  grid-template-columns:repeat(4,1fr);
-  gap:16px
+.choices {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
 }
 
-.game{
-  min-height:240px;
-  padding:25px;
-  display:flex;
-  align-items:flex-end;
-  border:1px solid #303030;
-  transition:.3s;
-  background-position:center;
-  background-size:cover
+.choice {
+    background: #202b47;
+    color: white;
+    border: 1px solid #3a496d;
+    padding: 15px;
+    border-radius: 12px;
+    font-weight: bold;
+    transition: .2s;
 }
 
-.game:hover{
-  transform:translateY(-5px);
-  border-color:var(--gold)
+.choice:hover {
+    transform: translateY(-2px);
+    background: #293758;
 }
 
-.game span{
-  color:var(--gold);
-  font-size:13px
+.choice.selected {
+    border-color: var(--gold);
+    box-shadow: 0 0 0 2px rgba(245,198,90,.2);
+    background: #303d60;
 }
 
-.game h3{
-  font-size:24px;
-  margin-top:5px
+.bet {
+    margin-top: 16px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
 }
 
-.game:nth-child(1){
-  background-image:
-  linear-gradient(transparent,rgba(0,0,0,.9)),
-  url("https://images.unsplash.com/photo-1518893883800-45cd0954574b?auto=format&fit=crop&w=900&q=85")
+.bet label {
+    color: var(--muted);
 }
 
-.game:nth-child(2){
-  background-image:
-  linear-gradient(transparent,rgba(0,0,0,.9)),
-  url("https://images.unsplash.com/photo-1511512578047-dfb367046420?auto=format&fit=crop&w=900&q=85")
+.bet input {
+    width: 130px;
+    padding: 13px;
+    border-radius: 10px;
+    border: 1px solid #3a4665;
+    background: #090e1b;
+    color: white;
+    outline: none;
 }
 
-.game:nth-child(3){
-  background-image:
-  linear-gradient(transparent,rgba(0,0,0,.9)),
-  url("https://images.unsplash.com/photo-1596838132731-3301c3fd4317?auto=format&fit=crop&w=900&q=85")
+.bet input:focus {
+    border-color: var(--gold);
 }
 
-.game:nth-child(4){
-  background-image:
-  linear-gradient(transparent,rgba(0,0,0,.9)),
-  url("https://images.unsplash.com/photo-1605870445919-838d190e8e1b?auto=format&fit=crop&w=900&q=85")
+.play {
+    padding: 13px 24px;
+    border: 0;
+    border-radius: 11px;
+    background: linear-gradient(135deg, #f7d16a, #b77619);
+    color: #171207;
+    font-weight: 900;
 }
-
-/* SCHEDULE */
 
-.schedule{
-  display:grid;
-  grid-template-columns:repeat(3,1fr);
-  gap:20px
+.play:hover {
+    filter: brightness(1.08);
 }
 
-.schedule-card{
-  background:#141717;
-  padding:28px;
-  border-top:3px solid var(--gold)
+.play:disabled {
+    opacity: .5;
+    cursor: not-allowed;
 }
 
-.schedule-card h3{
-  color:var(--lightgold);
-  font-size:24px
+.reset {
+    padding: 13px 20px;
+    border: 1px solid #46516e;
+    border-radius: 11px;
+    background: #29344f;
+    color: white;
 }
 
-.schedule-card p{
-  color:#aaa;
-  margin-top:10px;
-  line-height:1.8
+.message {
+    margin-top: 13px;
+    color: var(--muted);
+    min-height: 20px;
 }
 
-/* ENTERTAINMENT CTA */
-
-.cta{
-  text-align:center;
-  background:linear-gradient(90deg,#111,#1d1a11,#111)
-}
+/* HISTORY */
 
-.cta h2{
-  font-size:48px;
-  text-transform:uppercase
+.history {
+    margin-top: 20px;
 }
 
-.cta p{
-  color:#bbb;
-  margin:10px 0
+.history-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
-/* DISCLAIMER */
-
-.disclaimer{
-  background:#0a0a0a;
-  border-top:1px solid #252525;
-  border-bottom:1px solid #252525;
-  padding:35px 6%;
-  text-align:center
+.history h3 {
+    margin: 0;
 }
 
-.disclaimer-content{
-  max-width:900px;
-  margin:auto
+.history-list {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    margin-top: 12px;
 }
 
-.disclaimer h3{
-  color:var(--lightgold);
-  text-transform:uppercase;
-  letter-spacing:2px;
-  margin-bottom:12px
+.history-item {
+    min-width: 75px;
+    padding: 9px 12px;
+    border-radius: 9px;
+    text-align: center;
+    background: #19233b;
+    border: 1px solid #2d3957;
+    font-size: 13px;
 }
 
-.disclaimer p{
-  color:#999;
-  font-size:13px;
-  line-height:1.7
+.history-item.dragon {
+    color: #ff6974;
 }
-
-/* FOOTER */
 
-footer{
-  background:#030404;
-  padding:50px 6%;
-  color:#777
+.history-item.tiger {
+    color: #f5ca63;
 }
 
-.footer-grid{
-  max-width:1200px;
-  margin:auto;
-  display:grid;
-  grid-template-columns:2fr 1fr 1fr;
-  gap:40px
+.history-item.tie {
+    color: #c2cbe0;
 }
 
-.footer-grid h3{
-  color:white;
-  margin-bottom:12px
-}
+/* INFO */
 
-.footer-grid p{
-  line-height:1.7
+.info {
+    margin-top: 20px;
+    padding: 16px;
+    border-radius: 15px;
+    background: #0c1323;
+    border: 1px solid #293652;
+    color: var(--muted);
+    font-size: 14px;
+    line-height: 1.55;
 }
 
-.footer-grid a{
-  display:block;
-  margin:7px 0
-}
+/* WIN MESSAGE */
 
-.footer-grid a:hover{
-  color:var(--gold)
+.win {
+    color: var(--green) !important;
 }
 
-.copyright{
-  max-width:1200px;
-  margin:30px auto 0;
-  padding-top:20px;
-  border-top:1px solid #222;
-  text-align:center;
-  font-size:13px;
-  line-height:1.7
+.loss {
+    color: #ff6974 !important;
 }
 
-/* MOBILE */
+/* RESPONSIVE */
 
-@media(max-width:850px){
+@media(max-width: 760px) {
 
-  .topbar{
-    display:none
-  }
+    header {
+        align-items: flex-start;
+        flex-direction: column;
+    }
 
-  .menu{
-    display:block
-  }
+    .stats {
+        grid-template-columns: repeat(2, 1fr);
+    }
 
-  nav{
-    display:none;
-    position:absolute;
-    top:70px;
-    left:0;
-    right:0;
-    background:#080909;
-    flex-direction:column;
-    padding:25px;
-    gap:18px;
-    border-bottom:1px solid #292929
-  }
+    .cards-area {
+        grid-template-columns: 1fr;
+    }
 
-  nav.active{
-    display:flex
-  }
+    .center {
+        order: 2;
+    }
 
-  .cards,
-  .games,
-  .schedule,
-  .split,
-  .footer-grid{
-    grid-template-columns:1fr
-  }
+    .dragon-side {
+        order: 1;
+    }
 
-  .hero{
-    min-height:72vh
-  }
+    .tiger-side {
+        order: 3;
+    }
 
-  .hero h1{
-    font-size:50px
-  }
-
-  .title h2,
-  .content h2,
-  .cta h2{
-    font-size:34px
-  }
-
-  .boat-image{
-    min-height:300px
-  }
+    .player {
+        min-height: 270px;
+    }
+}
 
-  .navbar{
-    padding:18px 20px
-  }
+@media(max-width: 500px) {
 
-  .logo{
-    font-size:23px
-  }
-}
+    .app {
+        width: 96%;
+        padding-top: 14px;
+    }
 
-@media(max-width:480px){
+    .game {
+        padding: 12px;
+    }
 
-  section{
-    padding:70px 5%
-  }
+    .table {
+        padding: 12px;
+    }
 
-  .hero{
-    padding:60px 18px
-  }
+    .stats {
+        gap: 7px;
+    }
 
-  .hero h1{
-    font-size:43px
-  }
+    .stat {
+        padding: 10px 5px;
+    }
 
-  .hero p{
-    font-size:16px
-  }
+    .stat strong {
+        font-size: 17px;
+    }
 
-  .btn{
-    width:100%;
-    margin-left:0;
-    margin-right:0;
-    text-align:center
-  }
+    .choices {
+        grid-template-columns: 1fr;
+    }
 
-  .card{
-    padding:28px
-  }
+    .bet {
+        align-items: stretch;
+        flex-direction: column;
+    }
 
-  .game{
-    min-height:200px
-  }
+    .bet input,
+    .play,
+    .reset {
+        width: 100%;
+    }
 }
 </style>
 </head>
 
 <body>
 
-<!-- TOP BAR -->
+<div class="app">
 
-<div class="topbar">
+    <header>
 
-  <span>
-    DIAMOND • ENTERTAINMENT EXPERIENCE
-  </span>
+        <div class="logo">
+            <h1>🐉 Dragon Tiger 🐅</h1>
+            <p>Skill Arena • Virtual Points</p>
+        </div>
 
-  <span>
-    ENTERTAINMENT PURPOSES ONLY
-  </span>
+        <div class="balance">
+            <small>Your Points</small>
+            <strong id="balance">1,000</strong>
+        </div>
+
+    </header>
+
+
+    <main class="game">
+
+        <!-- STATS -->
+
+        <section class="stats">
+
+            <div class="stat">
+                <span>Rounds</span>
+                <strong id="rounds">0</strong>
+            </div>
+
+            <div class="stat">
+                <span>Wins</span>
+                <strong id="wins">0</strong>
+            </div>
+
+            <div class="stat">
+                <span>Losses</span>
+                <strong id="losses">0</strong>
+            </div>
+
+            <div class="stat">
+                <span>Streak</span>
+                <strong id="streak">0</strong>
+            </div>
+
+        </section>
+
+
+        <!-- TABLE -->
+
+        <section class="table">
+
+            <div class="cards-area">
+
+                <!-- DRAGON -->
+
+                <div class="player dragon-side">
+
+                    <h2>🐉 Dragon</h2>
+
+                    <div
+                        id="dragonCard"
+                        class="card"
+                    >
+                        ?
+                    </div>
+
+                </div>
+
+
+                <!-- CENTER -->
+
+                <div class="center">
+
+                    <div class="vs">
+                        VS
+                    </div>
+
+                    <div
+                        id="result"
+                        class="result"
+                    >
+                        Choose your prediction
+                    </div>
+
+                </div>
+
+
+                <!-- TIGER -->
+
+                <div class="player tiger-side">
+
+                    <h2>🐅 Tiger</h2>
+
+                    <div
+                        id="tigerCard"
+                        class="card"
+                    >
+                        ?
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- CONTROLS -->
+
+        <section class="controls">
+
+            <h3>Make Your Prediction</h3>
+
+            <div class="choices">
+
+                <button
+                    class="choice"
+                    data-choice="dragon"
+                >
+                    🐉 Dragon
+                </button>
+
+                <button
+                    class="choice"
+                    data-choice="tiger"
+                >
+                    🐅 Tiger
+                </button>
+
+                <button
+                    class="choice"
+                    data-choice="tie"
+                >
+                    ⚔️ Tie
+                </button>
+
+            </div>
+
+
+            <div class="bet">
+
+                <label for="points">
+                    Points:
+                </label>
+
+                <input
+                    id="points"
+                    type="number"
+                    min="1"
+                    max="1000"
+                    value="50"
+                >
+
+                <button
+                    id="playButton"
+                    class="play"
+                >
+                    🎴 Draw Cards
+                </button>
+
+                <button
+                    id="resetButton"
+                    class="reset"
+                >
+                    Reset Game
+                </button>
+
+            </div>
+
+
+            <div
+                id="message"
+                class="message"
+            >
+                Select Dragon, Tiger, or Tie.
+            </div>
+
+        </section>
+
+
+        <!-- HISTORY -->
+
+        <section class="history">
+
+            <div class="history-header">
+                <h3>Round History</h3>
+            </div>
+
+            <div
+                id="history"
+                class="history-list"
+            >
+                <div class="history-item">
+                    No rounds yet
+                </div>
+            </div>
+
+        </section>
+
+
+        <!-- INFO -->
+
+        <section class="info">
+
+            <strong>How to play</strong><br>
+
+            Choose Dragon, Tiger, or Tie and enter your virtual
+            points. Two cards are drawn. The higher card wins.
+            Equal card values produce a Tie.
+
+            <br><br>
+
+            Dragon/Tiger correct prediction:
+            <strong>+1× your selected points</strong>.
+
+            Tie correct prediction:
+            <strong>+4× your selected points</strong>.
+
+            This demo uses virtual points only and has no
+            real-money wagering or payment system.
+
+        </section>
+
+    </main>
 
 </div>
 
-
-<!-- HEADER -->
-
-<header>
-
-  <div class="navbar">
-
-    <a href="#home" class="logo">
-      DIAMOND
-    </a>
-
-    <button
-      class="menu"
-      onclick="toggleMenu()"
-      aria-label="Open navigation menu">
-      MENU
-    </button>
-
-    <nav id="nav">
-
-      <a href="#home">Home</a>
-
-      <a href="#gaming">Entertainment</a>
-
-      <a href="#experience">Experience</a>
-
-      <a href="#games">Games</a>
-
-      <a href="#schedule">Schedule</a>
-
-      <a href="#about">About</a>
-
-    </nav>
-
-  </div>
-
-</header>
-
-
-<!-- ENTERTAINMENT NOTICE -->
-
-<div class="entertainment-notice">
-
-  ★ THIS WEBSITE AND ALL GAMES SHOWN ARE FOR ENTERTAINMENT
-  AND DEMONSTRATION PURPOSES ONLY — NO REAL-MONEY GAMBLING ★
-
-</div>
-
-
-<!-- HERO -->
-
-<section class="hero" id="home">
-
-  <div class="hero-content">
-
-    <div class="eyebrow">
-      WELCOME TO DIAMOND
-    </div>
-
-    <h1>
-      Entertainment<br>
-      On The Water
-    </h1>
-
-    <p>
-      Discover Diamond, a fictional entertainment experience
-      inspired by luxury casino cruises, ocean adventures,
-      games and nightlife.
-    </p>
-
-    <a href="#games" class="btn">
-      Explore Games
-    </a>
-
-    <a href="#about" class="btn btn-outline">
-      Discover Diamond
-    </a>
-
-  </div>
-
-</section>
-
-
-<!-- ENTERTAINMENT -->
-
-<section id="gaming">
-
-  <div class="container">
-
-    <div class="title">
-
-      <small>THE DIAMOND EXPERIENCE</small>
-
-      <h2>Gaming Entertainment</h2>
-
-      <p>
-        Enjoy a visual and interactive casino-inspired
-        entertainment experience. All games and content on
-        this website are for entertainment and demonstration
-        purposes only.
-      </p>
-
-    </div>
-
-
-    <div class="cards">
-
-      <div class="card">
-
-        <div class="icon">♠</div>
-
-        <h3>Players Club</h3>
-
-        <p>
-          Explore our fictional players club concept and
-          discover entertainment-themed rewards and experiences.
-          No real-money rewards or wagering are offered.
-        </p>
-
-      </div>
-
-
-      <div class="card">
-
-        <div class="icon">🎰</div>
-
-        <h3>Slot Entertainment</h3>
-
-        <p>
-          Experience the visual style of classic slot-machine
-          entertainment with fictional gameplay for demonstration
-          purposes only.
-        </p>
-
-      </div>
-
-
-      <div class="card">
-
-        <div class="icon">♦</div>
-
-        <h3>Table Games</h3>
-
-        <p>
-          Discover classic table-game themes presented as
-          entertainment content. No real-money betting or
-          wagering takes place on this website.
-        </p>
-
-      </div>
-
-    </div>
-
-  </div>
-
-</section>
-
-
-<!-- EXPERIENCE -->
-
-<section class="dark" id="experience">
-
-  <div class="container split">
-
-    <div class="boat-image"></div>
-
-
-    <div class="content">
-
-      <small>THE EXPERIENCE</small>
-
-      <h2>
-        More Than<br>
-        A Game
-      </h2>
-
-      <p>
-        Diamond combines ocean-inspired visuals, nightlife,
-        games and entertainment into a fictional cruise-themed
-        experience.
-      </p>
-
-      <p>
-        Explore the website, discover the featured games and
-        enjoy the atmosphere. Everything presented here is
-        intended solely for entertainment and demonstration.
-      </p>
-
-      <a href="#games" class="btn">
-        Explore Games
-      </a>
-
-    </div>
-
-  </div>
-
-</section>
-
-
-<!-- GAMES -->
-
-<section id="games">
-
-  <div class="container">
-
-    <div class="title">
-
-      <small>ENTERTAINMENT</small>
-
-      <h2>Featured Games</h2>
-
-      <p>
-        Casino-inspired game themes created for entertainment
-        and demonstration only.
-      </p>
-
-    </div>
-
-
-    <div class="games">
-
-      <div class="game">
-
-        <div>
-
-          <span>01</span>
-
-          <h3>Slots</h3>
-
-        </div>
-
-      </div>
-
-
-      <div class="game">
-
-        <div>
-
-          <span>02</span>
-
-          <h3>Blackjack</h3>
-
-        </div>
-
-      </div>
-
-
-      <div class="game">
-
-        <div>
-
-          <span>03</span>
-
-          <h3>Roulette</h3>
-
-        </div>
-
-      </div>
-
-
-      <div class="game">
-
-        <div>
-
-          <span>04</span>
-
-          <h3>Card Games</h3>
-
-        </div>
-
-      </div>
-
-    </div>
-
-  </div>
-
-</section>
-
-
-<!-- SCHEDULE -->
-
-<section class="dark" id="schedule">
-
-  <div class="container">
-
-    <div class="title">
-
-      <small>ENTERTAINMENT PROGRAM</small>
-
-      <h2>Diamond Schedule</h2>
-
-      <p>
-        This fictional schedule is provided for entertainment
-        and demonstration purposes only.
-      </p>
-
-    </div>
-
-
-    <div class="schedule">
-
-      <div class="schedule-card">
-
-        <h3>Friday</h3>
-
-        <p>
-          Entertainment: 6:00 PM<br>
-          Featured Games: 7:00 PM<br>
-          Evening Show: 9:00 PM
-        </p>
-
-      </div>
-
-
-      <div class="schedule-card">
-
-        <h3>Saturday</h3>
-
-        <p>
-          Entertainment: 6:00 PM<br>
-          Featured Games: 7:00 PM<br>
-          Evening Show: 9:00 PM
-        </p>
-
-      </div>
-
-
-      <div class="schedule-card">
-
-        <h3>Sunday</h3>
-
-        <p>
-          Entertainment: 5:30 PM<br>
-          Featured Games: 6:30 PM<br>
-          Evening Show: 8:30 PM
-        </p>
-
-      </div>
-
-    </div>
-
-  </div>
-
-</section>
-
-
-<!-- ABOUT / CTA -->
-
-<section class="cta" id="about">
-
-  <div class="container">
-
-    <h2>
-      Welcome To Diamond
-    </h2>
-
-    <p>
-      A fictional casino-inspired entertainment experience
-      created for demonstration and visual entertainment.
-    </p>
-
-    <a href="#home" class="btn">
-      Explore Diamond
-    </a>
-
-  </div>
-
-</section>
-
-
-<!-- DISCLAIMER -->
-
-<section class="disclaimer">
-
-  <div class="disclaimer-content">
-
-    <h3>
-      Entertainment Only
-    </h3>
-
-    <p>
-      Diamond is an entertainment and demonstration website.
-      The games, schedules, rewards, cruise experience,
-      casino references and other content displayed on this
-      website are fictional or presented for entertainment
-      purposes only. This website does not offer real-money
-      gambling, wagering, betting, deposits, withdrawals,
-      prizes or monetary rewards.
-    </p>
-
-    <p style="margin-top:12px;">
-
-      No purchase or payment is required to view or interact
-      with the website. Any game results, scores, rewards or
-      other game-related outcomes shown are for demonstration
-      purposes only and have no monetary value.
-
-    </p>
-
-  </div>
-
-</section>
-
-
-<!-- FOOTER -->
-
-<footer id="contact">
-
-  <div class="footer-grid">
-
-    <div>
-
-      <h3>DIAMOND</h3>
-
-      <p>
-        A fictional casino-inspired entertainment experience
-        designed for visual entertainment and demonstration.
-      </p>
-
-    </div>
-
-
-    <div>
-
-      <h3>Explore</h3>
-
-      <a href="#gaming">
-        Entertainment
-      </a>
-
-      <a href="#experience">
-        Experience
-      </a>
-
-      <a href="#games">
-        Games
-      </a>
-
-      <a href="#schedule">
-        Schedule
-      </a>
-
-      <a href="#about">
-        About Diamond
-      </a>
-
-    </div>
-
-
-    <div>
-
-      <h3>Information</h3>
-
-      <p>
-        Entertainment Only
-      </p>
-
-      <p>
-        No Real-Money Gambling
-      </p>
-
-      <p>
-        No Monetary Rewards
-      </p>
-
-      <p>
-        Fictional Demonstration
-      </p>
-
-    </div>
-
-  </div>
-
-
-  <div class="copyright">
-
-    © 2026 Diamond Entertainment. All rights reserved.
-
-    <br>
-
-    This website is for entertainment and demonstration
-    purposes only.
-
-    <br>
-
-    No real-money gambling, betting, wagering, deposits,
-    withdrawals or monetary prizes are offered.
-
-  </div>
-
-</footer>
-
-
-<!-- JAVASCRIPT -->
 
 <script>
 
-function toggleMenu(){
+/* =========================
+   GAME DATA
+========================= */
 
-  document
-    .getElementById("nav")
-    .classList.toggle("active");
+const deck = [
+    { rank: "A", value: 14, suit: "♠", color: "black" },
+    { rank: "A", value: 14, suit: "♥", color: "red" },
+    { rank: "A", value: 14, suit: "♦", color: "red" },
+    { rank: "A", value: 14, suit: "♣", color: "black" },
+
+    { rank: "K", value: 13, suit: "♠", color: "black" },
+    { rank: "K", value: 13, suit: "♥", color: "red" },
+    { rank: "K", value: 13, suit: "♦", color: "red" },
+    { rank: "K", value: 13, suit: "♣", color: "black" },
+
+    { rank: "Q", value: 12, suit: "♠", color: "black" },
+    { rank: "Q", value: 12, suit: "♥", color: "red" },
+    { rank: "Q", value: 12, suit: "♦", color: "red" },
+    { rank: "Q", value: 12, suit: "♣", color: "black" },
+
+    { rank: "J", value: 11, suit: "♠", color: "black" },
+    { rank: "J", value: 11, suit: "♥", color: "red" },
+    { rank: "J", value: 11, suit: "♦", color: "red" },
+    { rank: "J", value: 11, suit: "♣", color: "black" },
+
+    { rank: "10", value: 10, suit: "♠", color: "black" },
+    { rank: "10", value: 10, suit: "♥", color: "red" },
+    { rank: "10", value: 10, suit: "♦", color: "red" },
+    { rank: "10", value: 10, suit: "♣", color: "black" },
+
+    { rank: "9", value: 9, suit: "♠", color: "black" },
+    { rank: "9", value: 9, suit: "♥", color: "red" },
+    { rank: "9", value: 9, suit: "♦", color: "red" },
+    { rank: "9", value: 9, suit: "♣", color: "black" },
+
+    { rank: "8", value: 8, suit: "♠", color: "black" },
+    { rank: "8", value: 8, suit: "♥", color: "red" },
+    { rank: "8", value: 8, suit: "♦", color: "red" },
+    { rank: "8", value: 8, suit: "♣", color: "black" },
+
+    { rank: "7", value: 7, suit: "♠", color: "black" },
+    { rank: "7", value: 7, suit: "♥", color: "red" },
+    { rank: "7", value: 7, suit: "♦", color: "red" },
+    { rank: "7", value: 7, suit: "♣", color: "black" },
+
+    { rank: "6", value: 6, suit: "♠", color: "black" },
+    { rank: "6", value: 6, suit: "♥", color: "red" },
+    { rank: "6", value: 6, suit: "♦", color: "red" },
+    { rank: "6", value: 6, suit: "♣", color: "black" },
+
+    { rank: "5", value: 5, suit: "♠", color: "black" },
+    { rank: "5", value: 5, suit: "♥", color: "red" },
+    { rank: "5", value: 5, suit: "♦", color: "red" },
+    { rank: "5", value: 5, suit: "♣", color: "black" },
+
+    { rank: "4", value: 4, suit: "♠", color: "black" },
+    { rank: "4", value: 4, suit: "♥", color: "red" },
+    { rank: "4", value: 4, suit: "♦", color: "red" },
+    { rank: "4", value: 4, suit: "♣", color: "black" },
+
+    { rank: "3", value: 3, suit: "♠", color: "black" },
+    { rank: "3", value: 3, suit: "♥", color: "red" },
+    { rank: "3", value: 3, suit: "♦", color: "red" },
+    { rank: "3", value: 3, suit: "♣", color: "black" },
+
+    { rank: "2", value: 2, suit: "♠", color: "black" },
+    { rank: "2", value: 2, suit: "♥", color: "red" },
+    { rank: "2", value: 2, suit: "♦", color: "red" },
+    { rank: "2", value: 2, suit: "♣", color: "black" }
+];
+
+
+/* =========================
+   GAME STATE
+========================= */
+
+let balance = 1000;
+let selectedChoice = null;
+
+let rounds = 0;
+let wins = 0;
+let losses = 0;
+let streak = 0;
+let history = [];
+
+
+/* =========================
+   ELEMENTS
+========================= */
+
+const balanceEl = document.getElementById("balance");
+const roundsEl = document.getElementById("rounds");
+const winsEl = document.getElementById("wins");
+const lossesEl = document.getElementById("losses");
+const streakEl = document.getElementById("streak");
+
+const dragonCardEl = document.getElementById("dragonCard");
+const tigerCardEl = document.getElementById("tigerCard");
+
+const resultEl = document.getElementById("result");
+const messageEl = document.getElementById("message");
+
+const pointsEl = document.getElementById("points");
+
+const playButton = document.getElementById("playButton");
+const resetButton = document.getElementById("resetButton");
+
+const historyEl = document.getElementById("history");
+
+
+/* =========================
+   CHOICE SELECTION
+========================= */
+
+document.querySelectorAll(".choice").forEach(button => {
+
+    button.addEventListener("click", () => {
+
+        document
+            .querySelectorAll(".choice")
+            .forEach(btn => {
+                btn.classList.remove("selected");
+            });
+
+        button.classList.add("selected");
+
+        selectedChoice = button.dataset.choice;
+
+        resultEl.textContent =
+            "Prediction: " +
+            selectedChoice.toUpperCase();
+
+        messageEl.textContent =
+            "Your prediction is ready. Draw the cards.";
+    });
+
+});
+
+
+/* =========================
+   RANDOM CARD
+========================= */
+
+function randomCard() {
+
+    return deck[
+        Math.floor(Math.random() * deck.length)
+    ];
 
 }
 
 
-document.querySelectorAll("nav a").forEach(function(link){
+/* =========================
+   SHOW CARD
+========================= */
 
-  link.addEventListener("click",function(){
+function showCard(element, card) {
 
-    document
-      .getElementById("nav")
-      .classList.remove("active");
+    element.classList.remove("red", "black");
 
-  });
+    element.classList.add(card.color);
+
+    element.innerHTML = `
+        <div>${card.rank}</div>
+        <div class="suit">${card.suit}</div>
+    `;
+
+    element.classList.remove("flipping");
+
+    void element.offsetWidth;
+
+    element.classList.add("flipping");
+}
+
+
+/* =========================
+   DETERMINE RESULT
+========================= */
+
+function determineWinner(dragon, tiger) {
+
+    if (dragon.value > tiger.value) {
+        return "dragon";
+    }
+
+    if (tiger.value > dragon.value) {
+        return "tiger";
+    }
+
+    return "tie";
+}
+
+
+/* =========================
+   UPDATE UI
+========================= */
+
+function updateUI() {
+
+    balanceEl.textContent =
+        balance.toLocaleString();
+
+    roundsEl.textContent = rounds;
+    winsEl.textContent = wins;
+    lossesEl.textContent = losses;
+    streakEl.textContent = streak;
+
+}
+
+
+/* =========================
+   HISTORY
+========================= */
+
+function updateHistory() {
+
+    if (history.length === 0) {
+
+        historyEl.innerHTML = `
+            <div class="history-item">
+                No rounds yet
+            </div>
+        `;
+
+        return;
+    }
+
+    historyEl.innerHTML = "";
+
+    history.forEach(item => {
+
+        const div = document.createElement("div");
+
+        div.className =
+            "history-item " + item;
+
+        if (item === "dragon") {
+            div.textContent = "🐉 Dragon";
+        }
+
+        if (item === "tiger") {
+            div.textContent = "🐅 Tiger";
+        }
+
+        if (item === "tie") {
+            div.textContent = "⚔️ Tie";
+        }
+
+        historyEl.appendChild(div);
+
+    });
+
+}
+
+
+/* =========================
+   PLAY ROUND
+========================= */
+
+playButton.addEventListener("click", () => {
+
+    if (!selectedChoice) {
+
+        messageEl.textContent =
+            "Please select Dragon, Tiger, or Tie.";
+
+        return;
+    }
+
+
+    const points =
+        Number(pointsEl.value);
+
+
+    if (
+        !Number.isFinite(points) ||
+        points <= 0 ||
+        !Number.isInteger(points)
+    ) {
+
+        messageEl.textContent =
+            "Enter a valid whole number of points.";
+
+        return;
+    }
+
+
+    if (points > balance) {
+
+        messageEl.textContent =
+            "You don't have enough virtual points.";
+
+        return;
+    }
+
+
+    playButton.disabled = true;
+
+
+    resultEl.textContent =
+        "Drawing cards...";
+
+    messageEl.textContent =
+        "The cards are being revealed.";
+
+
+    dragonCardEl.textContent = "★";
+    tigerCardEl.textContent = "★";
+
+
+    setTimeout(() => {
+
+        const dragon = randomCard();
+        const tiger = randomCard();
+
+
+        showCard(
+            dragonCardEl,
+            dragon
+        );
+
+        setTimeout(() => {
+
+            showCard(
+                tigerCardEl,
+                tiger
+            );
+
+        }, 180);
+
+
+        const winner =
+            determineWinner(
+                dragon,
+                tiger
+            );
+
+
+        rounds++;
+
+
+        history.unshift(winner);
+
+        if (history.length > 12) {
+            history.pop();
+        }
+
+
+        if (selectedChoice === winner) {
+
+            wins++;
+
+            streak++;
+
+
+            const reward =
+                winner === "tie"
+                    ? points * 4
+                    : points;
+
+
+            balance += reward;
+
+
+            resultEl.textContent =
+                "🎉 Correct Prediction!";
+
+            resultEl.className =
+                "result win";
+
+
+            messageEl.textContent =
+                `You earned ${reward.toLocaleString()} virtual points.`;
+
+        } else {
+
+            losses++;
+
+            streak = 0;
+
+
+            balance -= points;
+
+
+            resultEl.textContent =
+                "Prediction Missed";
+
+            resultEl.className =
+                "result loss";
+
+
+            messageEl.textContent =
+                `Result: ${winner.toUpperCase()} • `
+                + `-${points.toLocaleString()} points.`;
+
+        }
+
+
+        updateUI();
+
+        updateHistory();
+
+
+        playButton.disabled = false;
+
+    }, 550);
 
 });
+
+
+/* =========================
+   RESET
+========================= */
+
+resetButton.addEventListener("click", () => {
+
+    balance = 1000;
+
+    selectedChoice = null;
+
+    rounds = 0;
+    wins = 0;
+    losses = 0;
+    streak = 0;
+
+    history = [];
+
+
+    dragonCardEl.textContent = "?";
+    tigerCardEl.textContent = "?";
+
+    dragonCardEl.className = "card";
+    tigerCardEl.className = "card";
+
+
+    resultEl.textContent =
+        "Choose your prediction";
+
+    resultEl.className =
+        "result";
+
+
+    messageEl.textContent =
+        "Select Dragon, Tiger, or Tie.";
+
+
+    document
+        .querySelectorAll(".choice")
+        .forEach(button => {
+            button.classList.remove("selected");
+        });
+
+
+    updateUI();
+    updateHistory();
+
+});
+
+
+/* =========================
+   INITIALIZE
+========================= */
+
+updateUI();
+updateHistory();
 
 </script>
 
 </body>
 </html>
-```
